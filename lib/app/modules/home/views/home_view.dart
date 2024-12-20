@@ -57,7 +57,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               title: Text(
-                'ပင်မစာမျက်နှာသို့',
+                'gofirstpage'.tr,
                 style: TextStyle(
                   color: AppColor.mPrimary,
                 ),
@@ -77,7 +77,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               title: Text(
-                'ကျမ်းမာတိကာများ',
+                'tableofcontents'.tr,
                 style: TextStyle(color: AppColor.mPrimary),
               ),
               leading: Icon(
@@ -95,7 +95,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               title: Text(
-                'အခြားစာအုပ်များ',
+                'otherbooks'.tr,
                 style: TextStyle(
                   color: AppColor.mPrimary,
                 ),
@@ -135,7 +135,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               title: Text(
-                'ဆက်သွယ်ရန်',
+                'contact_us'.tr,
                 style: TextStyle(
                   color: AppColor.mPrimary,
                 ),
@@ -193,7 +193,7 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'ကျမ်းမာတိကာများ',
+                          'tableofcontents'.tr,
                           style: TextStyle(
                             color: AppColor.rBackground,
                             fontSize: 18,
@@ -264,6 +264,7 @@ class HomeView extends GetView<HomeController> {
                     ),
 
                     // Second GridView
+                    // First GridView
                     Obx(
                       () => controller.isLoading.value
                           ? CircularProgressIndicator()
@@ -286,7 +287,7 @@ class HomeView extends GetView<HomeController> {
                                         true, // Allow GridView to take only the needed space
                                     itemBuilder: (context, index) {
                                       var literature =
-                                          controller.newLiteratures[index];
+                                          controller.oldLiteratures[index];
                                       return GestureDetector(
                                         onTap: () => Get.toNamed('/read',
                                             arguments: literature),
@@ -328,7 +329,7 @@ class HomeView extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'အခြားစာအုပ်များ',
+                            'otherbooks'.tr,
                             style: TextStyle(
                               color: AppColor.rBackground,
                               fontSize: 18,
@@ -340,7 +341,7 @@ class HomeView extends GetView<HomeController> {
                             child: Row(
                               children: [
                                 Text(
-                                  'အားလုံး ကြည့်ရန်',
+                                  'lookall'.tr,
                                   style: TextStyle(
                                     color: AppColor.rBackground,
                                     fontSize: 16,
@@ -396,16 +397,19 @@ class HomeView extends GetView<HomeController> {
                                                       BorderRadius.vertical(
                                                           top: Radius.circular(
                                                               12)), // Match the top border radius
-                                                  child: Image.network(
-                                                    book.cover ??
-                                                        'https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=1200', // Replace with your image path
-                                                    width:
-                                                        127, // Match the container's width
-                                                    height:
-                                                        170, // Adjust height as needed
-                                                    fit: BoxFit
-                                                        .cover, // Ensure the image covers the area
-                                                  ),
+                                                  child: book.cover == null ||
+                                                          book.cover!.isEmpty
+                                                      ? Image.asset(
+                                                          'assets/book.png')
+                                                      : Image.network(
+                                                          book.cover!, // Replace with your image path
+                                                          width:
+                                                              127, // Match the container's width
+                                                          height:
+                                                              170, // Adjust height as needed
+                                                          fit: BoxFit
+                                                              .cover, // Ensure the image covers the area
+                                                        ),
                                                 ),
                                                 // Lower section for the button
                                                 Container(

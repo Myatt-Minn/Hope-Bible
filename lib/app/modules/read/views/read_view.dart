@@ -23,9 +23,19 @@ class ReadView extends GetView<ReadController> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.person_outline),
-          ),
+              onPressed: () {
+                _showAuthorDialog(context, literatureModel.authorName,
+                    literatureModel.email ?? '', literatureModel.bio ?? '');
+              },
+              icon: Container(
+                  color: AppColor.mPrimary,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                  )))
         ],
         centerTitle: false,
       ),
@@ -71,7 +81,7 @@ class ReadView extends GetView<ReadController> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Text(
-                                  'အခန်း ${index + 1}',
+                                  '${'roomm'.tr} ${index + 1}',
                                   style: TextStyle(
                                     color: controller.selectedRoomIndex.value ==
                                             index
@@ -109,11 +119,81 @@ class ReadView extends GetView<ReadController> {
               child: Obx(() => HtmlWidget(
                     literatureModel.rooms![controller.selectedRoomIndex.value]
                             .content ??
-                        'No Content Found',
+                        'nocontent'.tr,
+                    textStyle: TextStyle(
+                        fontSize: controller.fontSize.value.toDouble()),
                   )),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showAuthorDialog(
+      BuildContext context, String? name, String? email, String? bio) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColor.mPrimary,
+        title: Text(
+          'authorinfo'.tr,
+          style: TextStyle(color: Colors.white),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Author ${'Name'.tr}',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            Text(
+              name ?? '',
+              style: TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 4.0),
+            Divider(),
+            const SizedBox(height: 4.0),
+            Text(
+              'Author ${'Email'.tr}',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            Text(
+              email ?? '',
+              style: TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 4.0),
+            Divider(),
+            const SizedBox(height: 4.0),
+            Text(
+              'Author Bio',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            Text(
+              bio ?? '',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              'close'.tr,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }

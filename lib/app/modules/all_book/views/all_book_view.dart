@@ -11,8 +11,8 @@ class AllBookView extends GetView<AllBookController> {
     return Scaffold(
       backgroundColor: AppColor.mPrimary,
       appBar: AppBar(
-        title: const Text(
-          'အခြားစာအုပ်များ',
+        title: Text(
+          'otherbooks'.tr,
           style: TextStyle(color: AppColor.rPrimary),
         ),
         centerTitle: false,

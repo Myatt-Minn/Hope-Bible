@@ -69,7 +69,7 @@ class BookReadView extends GetView<BookReadController> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Text(
-                                  'အခန်း ${index + 1}',
+                                  '${'roomm'.tr} ${index + 1}',
                                   style: TextStyle(
                                     color: controller.selectedRoomIndex.value ==
                                             index
@@ -107,7 +107,9 @@ class BookReadView extends GetView<BookReadController> {
               child: Obx(() => HtmlWidget(
                     bookModel.rooms![controller.selectedRoomIndex.value]
                             .content ??
-                        'No Content Found',
+                        'nocontent'.tr,
+                    textStyle: TextStyle(
+                        fontSize: controller.fontSize.value.toDouble()),
                   )),
             ),
           ],

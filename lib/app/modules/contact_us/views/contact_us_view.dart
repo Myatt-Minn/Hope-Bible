@@ -13,8 +13,8 @@ class ContactUsView extends GetView<ContactUsController> {
       backgroundColor: AppColor.mPrimary,
       appBar: AppBar(
         iconTheme: IconThemeData(color: AppColor.mPrimary),
-        title: const Text(
-          'Contact Us',
+        title: Text(
+          'contact_us'.tr,
           style: TextStyle(
             color: AppColor.mPrimary,
           ),
@@ -59,7 +59,7 @@ class ContactUsView extends GetView<ContactUsController> {
                           child: Column(
                             children: [
                               Text(
-                                'If you need any question, you can call us anytime.',
+                                'callany'.tr,
                                 style: TextStyle(
                                   color: AppColor.rBackground,
                                 ),
@@ -71,19 +71,19 @@ class ContactUsView extends GetView<ContactUsController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Phone:  ${controller.contactData.value?.phone1 ?? ''} | ${controller.contactData.value?.phone2 ?? ''}',
+                                    '${'Phone Number'.tr}:  ${controller.contactData.value?.phone1 ?? ''} | ${controller.contactData.value?.phone2 ?? ''}',
                                     style: TextStyle(
                                       color: AppColor.rBackground,
                                     ),
                                   ),
                                   Text(
-                                    'Email: ${controller.contactData.value?.email ?? ''}',
+                                    '${'Email'.tr}: ${controller.contactData.value?.email ?? ''}',
                                     style: TextStyle(
                                       color: AppColor.rBackground,
                                     ),
                                   ),
                                   Text(
-                                    'Address: ${controller.contactData.value?.address ?? ''}',
+                                    '${'address'.tr}: ${controller.contactData.value?.address ?? ''}',
                                     style: TextStyle(
                                       color: AppColor.rBackground,
                                     ),
